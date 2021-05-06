@@ -45,5 +45,7 @@ requires = [
 
 [tool.briefcase.app.toganvas.android]
 requires = [
-    'toga-android>=0.3.0.dev20',
+    '../../toga/src/core',
+    '../../toga/src/android',
 ]
+template = "../../briefcase-android-gradle-template"

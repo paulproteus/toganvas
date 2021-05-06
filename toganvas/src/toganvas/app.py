@@ -27,9 +27,12 @@ class Toganvas(toga.App):
         self.main_window.show()
 
     def draw_line_segment(self):
-        with self.canvas.fill(color=rgb(149, 119, 73)) as head_filler:
-            head_filler.move_to(112, 103)
-            head_filler.line_to(112, 113)
+        with self.canvas.stroke(line_width=4.0) as head_stroker:
+            print("hi in stroke in app")
+            with head_stroker.closed_path(0, 0) as closed_head:
+                print("hi in stroke path in app")
+                closed_head.line_to(112, 113)
+                print("hi after line_to in app")
 
 
 
