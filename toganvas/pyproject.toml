@@ -45,6 +45,7 @@ requires = [
 
 [tool.briefcase.app.toganvas.android]
 requires = [
+    '../../rubicon-java',
     '../../toga/src/core',
     '../../toga/src/android',
 ]
