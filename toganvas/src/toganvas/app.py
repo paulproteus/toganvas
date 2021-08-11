@@ -10,7 +10,7 @@ from toga.style import Pack
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_07_21_startup()
+        self._2021_08_10_startup()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -36,6 +36,29 @@ class Toganvas(toga.App):
         # Show the main window
         self.main_window.show()
 
+    def _2021_08_10_startup(self):
+        # Build two lines that cross each other
+        # Main window of the application with title and size
+        self.main_window = toga.MainWindow(title=self.name, size=(148, 250))
+
+        # Create canvas
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        box = toga.Box(children=[self.canvas])
+
+        # Add the content on the main window
+        self.main_window.content = box
+
+        # Draw
+        with self.canvas.stroke(line_width=4.0, color=rgb(100, 100, 255), line_dash=[4, 4]) as stroke:
+            with stroke.closed_path(0, 0) as closed_stroke:
+                closed_stroke.line_to(112, 113)
+
+        with self.canvas.stroke(line_width=3.0, color=rgb(255, 255, 100)) as stroke:
+            with stroke.closed_path(112, 0) as closed_stroke:
+                closed_stroke.line_to(0, 113)
+
+        # Show the main window
+        self.main_window.show()
 
 def main():
     return Toganvas()
