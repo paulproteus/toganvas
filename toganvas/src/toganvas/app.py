@@ -10,7 +10,7 @@ from toga.style import Pack
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_10_12_startup()
+        self._2021_10_18_startup()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -82,6 +82,28 @@ class Toganvas(toga.App):
             with stroke.closed_path(110, 110) as closed_stroke:
                 closed_stroke.line_to(110, 200)
                 closed_stroke.line_to(200, 110)
+
+        # Show the main window
+        self.main_window.show()
+
+    def _2021_10_18_startup(self):
+        # Build a right triangle by drawing two line segments, and closing the path
+        # Main window of the application with title and size
+        self.main_window = toga.MainWindow(title=self.name, size=(250, 250))
+
+        # Create canvas; put it in a box on the main window
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        self.main_window.content = toga.Box(children=[self.canvas])
+
+        # Draw
+        with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
+            stroke.arc(40, 100, 10)
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
+            stroke.arc(180, 100, 10)
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(0, 0, 255), line_dash=[4, 4]) as stroke:
+            stroke.arc(110, 150, 50, endangle=math.pi)
 
         # Show the main window
         self.main_window.show()
