@@ -100,6 +100,9 @@ class Toganvas(toga.App):
             stroke.arc(40, 100, 10)
 
         with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
+            stroke.arc(35, 80, 10, startangle=math.pi, endangle=(2 * math.pi))
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
             stroke.arc(180, 100, 10)
 
         with self.canvas.stroke(line_width=4.0, color=rgb(0, 0, 255), line_dash=[4, 4]) as stroke:
