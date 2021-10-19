@@ -108,6 +108,10 @@ class Toganvas(toga.App):
         with self.canvas.stroke(line_width=4.0, color=rgb(0, 0, 255), line_dash=[4, 4]) as stroke:
             stroke.arc(110, 150, 50, endangle=math.pi)
 
+        with self.canvas.stroke(line_width=4.0, color=rgb(0, 0, 255), line_dash=[4, 4]) as stroke:
+            stroke.arc(80, 140, 50, endangle=math.pi * 1.5, anticlockwise=True)
+
+
         # Show the main window
         self.main_window.show()
 
