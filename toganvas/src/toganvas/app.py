@@ -116,27 +116,21 @@ class Toganvas(toga.App):
         self.main_window.show()
 
     def _2021_10_26_startup(self):
-        # Build a right triangle by drawing two line segments, and closing the path
-        # Main window of the application with title and size
         self.main_window = toga.MainWindow(title=self.name, size=(250, 250))
-
-        # Create canvas; put it in a box on the main window
         self.canvas = toga.Canvas(style=Pack(flex=1))
         self.main_window.content = toga.Box(children=[self.canvas])
 
-        # Draw
         with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
             stroke.rect(40, 50, 30, 40)
-
         with self.canvas.stroke(line_width=4.0, color=rgb(100, 255, 100), line_dash=[4, 4]) as stroke:
             stroke.rect(140, 50, 30, 40)
-
         with self.canvas.stroke(line_width=4.0, color=rgb(0, 0, 255), line_dash=[4, 4]) as stroke:
-            stroke.rect(50, 150, 100, 20)
+            # Use a closed stroke; however, it seems to have no impact on macOS at least
+            with stroke.closed_path(50, 100) as closed_stroke:
+                closed_stroke.rect(50, 150, 100, 20)
 
         # Show the main window
         self.main_window.show()
-
 
 def main():
     return Toganvas()
