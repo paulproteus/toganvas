@@ -137,6 +137,8 @@ class Toganvas(toga.App):
         self.canvas = toga.Canvas(style=Pack(flex=1))
         self.main_window.content = toga.Box(children=[self.canvas])
 
+        self.canvas.rotate(math.pi * 0.2)
+
         with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
             stroke.rect(40, 50, 30, 40)
 
@@ -147,8 +149,6 @@ class Toganvas(toga.App):
             # Use a closed stroke; however, it seems to have no impact on macOS at least
             with stroke.closed_path(50, 100) as closed_stroke:
                 closed_stroke.rect(50, 150, 100, 20)
-
-        self.canvas.rotate(math.pi * 0.5)
 
         # Show the main window
         self.main_window.show()
