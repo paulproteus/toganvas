@@ -10,7 +10,7 @@ from toga.style import Pack
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_10_27_startup()
+        self._2021_10_27b_startup()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -152,6 +152,28 @@ class Toganvas(toga.App):
 
         # Show the main window
         self.main_window.show()
+
+    def _2021_10_27b_startup(self):
+        self.main_window = toga.MainWindow(title=self.name, size=(250, 250))
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        self.main_window.content = toga.Box(children=[self.canvas])
+
+        self.canvas.scale(0.5, 1.2)
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
+            stroke.rect(40, 50, 30, 40)
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(100, 255, 100), line_dash=[4, 4]) as stroke:
+            stroke.rect(140, 50, 30, 40)
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(0, 0, 255), line_dash=[4, 4]) as stroke:
+            # Use a closed stroke; however, it seems to have no impact on macOS at least
+            with stroke.closed_path(50, 100) as closed_stroke:
+                closed_stroke.rect(50, 150, 100, 20)
+
+        # Show the main window
+        self.main_window.show()
+
 
 def main():
     return Toganvas()
