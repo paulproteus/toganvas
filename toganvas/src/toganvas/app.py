@@ -10,7 +10,7 @@ from toga.style import Pack
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_10_31b_startup()
+        self._2021_10_31c_startup()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -229,6 +229,33 @@ class Toganvas(toga.App):
 
         with self.canvas.fill(color=rgb(0, 0, 255)) as fill:
             fill.rect(50, 150, 100, 20)
+
+        # Show the main window
+        self.main_window.show()
+
+    def _2021_10_31c_startup(self):
+        self.main_window = toga.MainWindow(title=self.name, size=(250, 250))
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        self.main_window.content = toga.Box(children=[self.canvas])
+
+        self.canvas.rotate(math.pi * 0.2)
+        with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
+            stroke.rect(40, 50, 30, 40)
+        self.canvas.reset_transform()
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(50, 255, 75), line_dash=[4, 4]) as stroke:
+            stroke.rect(40, 50, 30, 40)
+
+        self.canvas.scale(1.5, 2)
+        self.canvas.rotate(-math.pi * 0.2)
+        self.canvas.translate(10, 50)
+        with self.canvas.stroke(line_width=4.0, color=rgb(50, 75, 255), line_dash=[4, 4]) as stroke:
+            stroke.rect(40, 50, 30, 40)
+        self.canvas.reset_transform()
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(3, 200, 80), line_dash=[4, 4]) as stroke:
+            stroke.rect(140, 150, 30, 40)
+
 
         # Show the main window
         self.main_window.show()
