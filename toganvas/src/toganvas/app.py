@@ -10,7 +10,7 @@ from toga.style import Pack
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_10_31e_startup()
+        self._2021_11_02_startup()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -312,6 +312,28 @@ class Toganvas(toga.App):
         ) as context:
             with context.closed_path(110 + rx, 60) as closer:
                 closer.ellipse(110, 60, rx, ry, math.pi * 0.5, 0, math.pi)
+
+        # Show the main window
+        self.main_window.show()
+
+    def _2021_11_02_startup(self):
+        # Expected: 2 semi-circles, rotated at 90 degrees from each other,
+        # also offset 10px from each other.
+        self.main_window = toga.MainWindow(title=self.name, size=(250, 250))
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        self.main_window.content = toga.Box(children=[self.canvas])
+
+        with self.canvas.stroke(
+            color=rgb(50, 255, 75),
+            line_width=1,
+        ) as context:
+            context.ellipse(100, 120, 50, 115, math.pi * 0.25, 0.5 * math.pi, 1.5 * math.pi)
+
+        with self.canvas.stroke(
+                color=rgb(50, 255, 75),
+                line_width=1,
+        ) as context:
+            context.ellipse(110, 130, 60, 125, math.pi * 0.375, 0.5 * math.pi, 1.5 * math.pi, True)
 
         # Show the main window
         self.main_window.show()
