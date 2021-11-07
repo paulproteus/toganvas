@@ -10,7 +10,7 @@ from toga.style import Pack
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_11_02_startup()
+        self._2021_11_07_startup()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -337,6 +337,23 @@ class Toganvas(toga.App):
 
         # Show the main window
         self.main_window.show()
+
+    def _2021_11_07_startup(self):
+        self.main_window = toga.MainWindow(title=self.name, size=(250, 250))
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        self.main_window.content = toga.Box(children=[self.canvas])
+
+        with self.canvas.stroke(line_width=4.0, color=rgb(255, 200, 200), line_dash=[4, 4]) as stroke:
+            # Draw an arc
+            stroke.arc(40, 100, 10, endangle=math.pi * 1.5)
+            # Create a new path, which will cause the canvas to "forget" that arc was ever drawn
+            stroke.new_path()
+            # Draw an arc lower down the screen, instead.
+            stroke.arc(80, 200, 10, endangle=math.pi * 1.5)
+
+        # Show the main window
+        self.main_window.show()
+
 
 def main():
     return Toganvas()
