@@ -5,12 +5,13 @@ import math
 
 import toga
 from toga.colors import WHITE, rgb
+from toga.fonts import SANS_SERIF
 from toga.style import Pack
 
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_11_07_startup()
+        self._2021_11_07b_startup()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -354,6 +355,21 @@ class Toganvas(toga.App):
         # Show the main window
         self.main_window.show()
 
+    def _2021_11_07b_startup(self):
+        self.main_window = toga.MainWindow(title=self.name, size=(250, 250))
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        self.main_window.content = toga.Box(children=[self.canvas])
+
+        x = 32
+        y = 185
+        font = toga.Font(family=SANS_SERIF, size=20)
+        width, height = self.canvas.measure_text('Tiberius', font, tight=True)
+        with self.canvas.stroke(line_width=4.0) as rect_stroker:
+            rect_stroker.rect(x, y - height, width, height)
+        with self.canvas.fill(color=rgb(149, 119, 73)) as text_filler:
+            text_filler.write_text('Tiberius', x, y, font)
+        # Show the main window
+        self.main_window.show()
 
 def main():
     return Toganvas()
