@@ -11,7 +11,7 @@ from toga.style import Pack
 
 class Toganvas(toga.App):
     def startup(self):
-        self._2021_11_07b_startup()
+        self._2021_12_30_closed_stroke_arc()
 
     def _2021_07_21_startup(self):
         # Build two lines that cross each other
@@ -369,6 +369,23 @@ class Toganvas(toga.App):
         with self.canvas.fill(color=rgb(149, 119, 73)) as text_filler:
             text_filler.write_text('Tiberius', x, y, font)
         # Show the main window
+        self.main_window.show()
+
+    def _2021_12_30_closed_stroke_arc(self):
+        self.main_window = toga.MainWindow(title=self.name, size=(148, 250))
+
+        # Create canvas
+        self.canvas = toga.Canvas(style=Pack(flex=1))
+        box = toga.Box(children=[self.canvas])
+
+        # Add the content on the main window
+        self.main_window.content = box
+
+        with self.canvas.stroke(line_width=4.0) as head_stroker:
+            with head_stroker.closed_path(35, 84) as closed_path:
+                closed_path.arc(65, 84, 30, math.pi, 3 * math.pi / 2)
+                closed_path.arc(82, 84, 30, 3 * math.pi / 2, 2 * math.pi)
+
         self.main_window.show()
 
 def main():
